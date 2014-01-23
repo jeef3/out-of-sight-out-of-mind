@@ -35,6 +35,7 @@ body[ltype=channel] div#body_home {
 }
 
 body .line {
+	position: relative;
  	border-top: 1px solid #efefef;
  	/*border-bottom: 0;*/
 }
@@ -196,16 +197,44 @@ body div[ltype*=notice] .sender {
 
 /* PRIVMSG */
 
-body div.line[ltype*=privmsg][highlight=false] {
+.line[ltype*=privmsg] .message,
+.line[ltype*=notice] .message {
+	display: table-cell;
+	padding-left: 100px;
+}
+
+.line[ltype*=privmsg] .sender,
+.line[ltype*=notice] .sender {
+	box-sizing: border-box;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100px;
+	padding: 3px 5px;
+
+	font-weight: 700;
+	text-align: right;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.line[ltype*=privmsg] .sender {
+	background: #f6f6f6;
+}
+
+body div.line[ltype*=privmsg] {
  	padding: 3px 5px 3px 5px;
 }
 
 body div.line[ltype*=privmsg][highlight=true],
 body div.line[ltype*=action][highlight=true] {
- 	padding: 3px 5px 3px 5px;
 	border-top: 1px solid #cbc57f;
-	border-bottom: 1px solid #cbc57f;
   	background-color: #fefbe1 !important;
+}
+body div.line[ltype*=privmsg][highlight=true] + .line,
+body div.line[ltype*=action][highlight=true] + .line {
+	border-color: #cbc57f;
 }
 
 body div[ltype*="privmsg"] .message {
@@ -225,22 +254,33 @@ body div[ltype*=privmsg] .sender {
 
 body div.line[ltype*=action] {
  	padding: 3px 5px 3px 5px;
+ 	font-weight: 700;
+ 	font-style: italic;
 }
 
 body div[ltype*="action"] .message {
 	color: #555555;
+	font-weight: 700;
+	padding-left: 100px;
 }
 
 body div[ltype*=action] .sender {
+	box-sizing: border-box;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100px;
+	padding: 3px 10px;
+
 	font-weight: 700;
+	text-align: right;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
-body div[ltype*=action] p[ltype*=myself] .sender,
-body div[ltype*=action] p[ltype*=myself] .message {
-	color: #4AD309;
-}
-
-body[dir=ltr] div[ltype*=action] .sender:before {
+body[dir=ltr] div[ltype*=action] .message:before {
 	content: "\2022";
 	margin-right: 0.4em;
 }
@@ -250,7 +290,7 @@ body[dir=ltr] div[ltype*=action] .sender:after {
   	/* margin-right: 0.4em; */
 }
 
-body[dir=rtl] div[ltype*=action] .sender:before {
+body[dir=rtl] div[ltype*=action] .message:before {
 	content: "\2022";
 	margin-left: 0.4em;
 }
@@ -551,4 +591,9 @@ body .inline_nickname[colornumber='29'] {
 body .sender[ltype*=normal][colornumber='30'],
 body .inline_nickname[colornumber='30'] {
 	color: #08465f;
+}
+
+body div#body_home p {
+	text-indent: 0 !important;
+	margin-left: 0 !important;
 }

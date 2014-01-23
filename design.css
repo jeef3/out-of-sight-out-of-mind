@@ -35,7 +35,16 @@ body[ltype=channel] div#body_home {
 }
 
 body .line {
- 	border-bottom:1px solid #efefef;
+ 	border-top: 1px solid #efefef;
+ 	/*border-bottom: 0;*/
+}
+
+/*body .line + body .line {
+ 	border-bottom: 1px solid #efefef;
+}*/
+
+div[id=mark] + .line {
+	border-top: 0;
 }
 
 body[dir=rtl] .sender {
@@ -71,24 +80,13 @@ body div#loading_screen {
 body[dir=ltr] .time {
 	white-space: nowrap;
 	float: right;
-	color: #999;
+	color: #ccc;
 	-webkit-user-select: none;
-	text-shadow: #fff 0px 1px;
-	font-weight: bold;
 	margin-right: 10px;
 	line-height: 22px;
 	font-style: normal;
 	text-align: right;
 }
-
-body[dir=rtl] .time {
-	color: #999999;
-	white-space: nowrap;
-	padding-left: 0.4em;
-	display: inline-block;
-}
-
-/* Links */
 
 /* Encryption Lock */
 
@@ -97,15 +95,18 @@ body[dir=rtl] .time {
 	margin: 0;
 	padding: 0;
 	height: 11px;
-	margin-bottom: -1px;
+	margin-bottom: 2px;
 	padding-left: 10px;
 }
+
+/* Links */
 
 a {
 	color: #3297e5;
 	border-color: #3297e5;
 	text-decoration: none;
 	border-bottom: dotted 1px;
+	font-weight: 600;
 }
 
 a:hover {
@@ -156,9 +157,9 @@ body img {
 div[id=mark] {
 	position: relative;
 	z-index: 295;
-	margin-top: -1px;
+	/*margin-top: -1px;*/
 	border-bottom: 1px dashed;
-	border-color: #BBBBBB;
+	border-color: #666;
 	-webkit-transition: 0.2s linear;
 }
 
@@ -179,8 +180,13 @@ body div.line[ltype*=wallops] {
 	background: #eff2f6;
   	position: relative;
  	padding: 3px 5px 3px 5px;
-	border-top: 1px solid #a9c4e9;
-	border-bottom: 1px solid #a9c4e9;
+ 	border-color: #a9c4e9;
+}
+
+body div.line[ltype*=ctcp] + .line,
+body div.line[ltype*=notice] + .line,
+body div.line[ltype*=wallops] + .line {
+	border-color: #a9c4e9;
 }
 
 body div[ltype*=notice] .sender {
